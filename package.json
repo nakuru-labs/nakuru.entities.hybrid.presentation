@@ -1,0 +1,17 @@
+{
+  "name": "com.nakuru.entities.hybrid.presentation",
+  "version": "1.0.0",
+  "displayName": "[Nakuru] Entities Hybrid Presentation",
+  "description": "Hybrid presentation layer for GameObjects based on Unity.Entities.",
+  "unity": "2020.2",
+  "unityRelease": "0f1",
+  "dependencies": {
+    "com.unity.entities": "1.0.16",
+    "com.unity.addressables": "1.21.20"
+  },
+  "author": {
+    "name": "Nakuru Labs",
+    "email": "nakuru.labs@gmail.com",
+    "url": "https://github.com/nakuru-labs/nakuru.entities.hybrid.presentation"
+  }
+}
