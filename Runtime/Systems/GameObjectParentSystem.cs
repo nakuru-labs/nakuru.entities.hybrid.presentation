@@ -4,9 +4,10 @@ using Unity.Entities;
 using Unity.Transforms;
 using UnityEngine;
 
-namespace MatchX.Client.Presentation
+namespace Nakuru.Entities.Hybrid.Presentation
 {
 
+	[DisableAutoCreation]
 	public partial struct GameObjectParentSystem : ISystem
 	{
 		[BurstCompile]

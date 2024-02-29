@@ -2,9 +2,10 @@ using Unity.Collections;
 using Unity.Entities;
 using UnityEngine;
 
-namespace MatchX.Client.Presentation
+namespace Nakuru.Entities.Hybrid.Presentation
 {
 
+	[DisableAutoCreation]
 	[RequireMatchingQueriesForUpdate]
 	public partial struct NewGameObjectCreationSystem : ISystem
 	{

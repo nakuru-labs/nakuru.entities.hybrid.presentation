@@ -1,11 +1,13 @@
-using Nakuru.Unity.Ecs.Utilities;
 using Unity.Entities;
 
-namespace MatchX.Client.Presentation
+namespace Nakuru.Entities.Hybrid.Presentation
 {
 
-	public partial class HybridPresentationSystemGroup : StrictOrderSystemsGroup
+	[UpdateInGroup(typeof(PresentationSystemGroup), OrderFirst = true)]
+	public partial class HybridPresentationSystemGroup : ComponentSystemGroup
 	{
+		public HybridPresentationSystemGroup() { EnableSystemSorting = false; }
+
 		protected override void OnCreate()
 		{
 			base.OnCreate();

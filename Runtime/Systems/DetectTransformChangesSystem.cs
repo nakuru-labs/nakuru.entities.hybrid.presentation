@@ -3,9 +3,10 @@ using Unity.Collections;
 using Unity.Entities;
 using Unity.Transforms;
 
-namespace MatchX.Client.Presentation
+namespace Nakuru.Entities.Hybrid.Presentation
 {
 
+	[DisableAutoCreation]
 	[RequireMatchingQueriesForUpdate]
 	public partial struct DetectTransformChangesSystem : ISystem
 	{

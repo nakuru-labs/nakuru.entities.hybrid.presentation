@@ -3,9 +3,10 @@ using Unity.Entities;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-namespace MatchX.Client
+namespace Nakuru.Entities.Hybrid.Presentation
 {
 
+	[DisableAutoCreation]
 	[RequireMatchingQueriesForUpdate]
 	public partial struct AddressableAssetLoadingSystem : ISystem
 	{

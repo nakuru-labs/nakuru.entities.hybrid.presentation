@@ -2,9 +2,10 @@ using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
 
-namespace MatchX.Client.Presentation
+namespace Nakuru.Entities.Hybrid.Presentation
 {
 
+	[DisableAutoCreation]
 	[RequireMatchingQueriesForUpdate]
 	public partial struct ClearViewElementEventsSystem : ISystem
 	{
