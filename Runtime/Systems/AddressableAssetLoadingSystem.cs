@@ -14,15 +14,17 @@ namespace Nakuru.Entities.Hybrid.Presentation
 		{
 			var ecb = new EntityCommandBuffer(Allocator.Temp);
 
-			foreach (var (assetPathRo, entity) in SystemAPI.Query<RefRO<AddressableAssetPath>>()
+			foreach (var (assetPathRo, entity) in SystemAPI.Query<RefRO<GameObjectSource.AssetPath>>()
 			                                  .WithAll<ViewElement.Tag>()
 			                                  .WithNone<GameObjectRef>()
 			                                  .WithEntityAccess()) {
 
 				var assetKey = assetPathRo.ValueRO.Value.ToString();
 				var prefab = Addressables.LoadAssetAsync<GameObject>(assetKey).WaitForCompletion();
+				Addressables.InstantiateAsync()
 				var instance = Object.Instantiate(prefab);
-				
+				var ss = Resources.LoadAsync("");
+				ss.asset
 				ecb.AddComponent(entity, new GameObjectRef { Value = instance });
 				ecb.AddComponent<ViewElement.Event.OnBorn>(entity);
 			}

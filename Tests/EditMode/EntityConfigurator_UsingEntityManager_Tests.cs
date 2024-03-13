@@ -3,7 +3,6 @@ using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
-using UnityEngine;
 
 namespace Nakuru.Entities.Hybrid.Presentation.Tests
 {
@@ -190,15 +189,6 @@ namespace Nakuru.Entities.Hybrid.Presentation.Tests
 			Assert.That(tag2Entity, Is.Not.EqualTo(Entity.Null));
 			
 			var parent = EntityManager.GetComponentData<Parent>(tag2Entity);
-			
-			Debug.Log($"tag1Entity - {tag1Entity}");
-			Debug.Log($"tag2Entity - {tag2Entity}");
-
-			Debug.Log($"tag1Entity.HasTag1)- {EntityManager.HasComponent<TestComponents.Tag1>(tag1Entity)}");
-			Debug.Log($"tag1Entity.HasTag2)- {EntityManager.HasComponent<TestComponents.Tag2>(tag1Entity)}");
-
-			Debug.Log($"tag2Entity.HasTag1)- {EntityManager.HasComponent<TestComponents.Tag1>(tag2Entity)}");
-			Debug.Log($"tag2Entity.HasTag2)- {EntityManager.HasComponent<TestComponents.Tag2>(tag2Entity)}");
 			
 			Assert.That(parent.Value, Is.EqualTo(tag1Entity));
 		}

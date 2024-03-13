@@ -13,12 +13,12 @@ namespace Nakuru.Entities.Hybrid.Presentation
 		{
 			var ecb = new EntityCommandBuffer(Allocator.Temp);
 			
-			foreach (var (_, entity) in SystemAPI.Query<CreateGameObject>()
+			foreach (var (_, entity) in SystemAPI.Query<GameObjectSource.New>()
 			                                         .WithNone<GameObjectRef>()
 			                                         .WithEntityAccess()) {
 				ecb.AddComponent(entity, new GameObjectRef { Value = new GameObject() });
 				ecb.AddComponent<ViewElement.Event.OnBorn>(entity);
-				ecb.RemoveComponent<CreateGameObject>(entity);
+				ecb.RemoveComponent<GameObjectSource.New>(entity);
 			}
 			
 			ecb.Playback(state.EntityManager);

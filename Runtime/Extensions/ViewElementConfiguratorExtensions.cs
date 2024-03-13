@@ -134,12 +134,6 @@ namespace Nakuru.Entities.Hybrid.Presentation
 			cfg.PostTransformMatrix.Value = float4x4.Scale(value);
 			return cfg.WithComponent(cfg.PostTransformMatrix);
 		}
-		
-		public static ViewElement.Configurator WithAddressableAssetPath(this ViewElement.Configurator cfg, FixedString128Bytes value) =>
-			cfg.WithComponent(new AddressableAssetPath { Value = value });
-			
-		public static ViewElement.Configurator WithNewGameObject(this ViewElement.Configurator cfg) => 
-			cfg.WithComponent<CreateGameObject>();
 
 		public static ViewElement.Configurator WithParent(this ViewElement.Configurator cfg, Entity parentEntity)
 		{
@@ -153,6 +147,14 @@ namespace Nakuru.Entities.Hybrid.Presentation
 
 			return cfg;
 		}
+			
+		public static ViewElement.Configurator WithNewGameObject(this ViewElement.Configurator cfg) => 
+			cfg.WithComponent<GameObjectSource.New>();
+		
+		public static ViewElement.Configurator WithGameObjectByPath(this ViewElement.Configurator cfg, FixedString128Bytes value) => 
+			cfg.WithComponent(new GameObjectSource.AssetPath {
+				Value = value
+			});
 	}
 
 }
