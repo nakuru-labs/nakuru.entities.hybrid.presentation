@@ -14,14 +14,17 @@ namespace Nakuru.Entities.Hybrid.Presentation.Tests
 			            .WithAll<ViewElement.Tag>()
 			            .Build(EntityManager);
 
+			// parent entity
 			var parentEntity = ViewFactory.Create(EntityManager).Entity;
-
-			var child1Entity = ViewFactory.Create(EntityManager)
+			
+			// first level child entity
+			var childEntity1 = ViewFactory.Create(EntityManager)
 			                              .WithParent(parentEntity)
 			                              .Entity;
 
+			// second level child entity
 			ViewFactory.Create(EntityManager)
-			           .WithParent(child1Entity);
+			           .WithParent(childEntity1);
 			
 			Assert.That(query.CalculateEntityCount(), Is.EqualTo(3));
 
