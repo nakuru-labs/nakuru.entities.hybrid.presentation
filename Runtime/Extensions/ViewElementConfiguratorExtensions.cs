@@ -148,13 +148,30 @@ namespace Nakuru.Entities.Hybrid.Presentation
 			return cfg;
 		}
 			
-		public static ViewElement.Configurator WithNewGameObject(this ViewElement.Configurator cfg) => 
-			cfg.WithComponent<GameObjectSource.New>();
+		public static ViewElement.Configurator WithGameObjectNew(this ViewElement.Configurator cfg) => 
+			cfg.WithComponent<RequestNewGameObject>();
+
+		public static ViewElement.Configurator WithGameObjectFromResources(
+			this ViewElement.Configurator cfg, FixedString128Bytes path, bool async = true)
+		{
+			if (async)
+				cfg.WithComponent<RequestPrefabAsync>();
+			
+			cfg.WithComponent<RequestPrefabFromResources>()
+			   .WithComponent(new PrefabPath { Value = path });
+			return cfg;
+		}
 		
-		public static ViewElement.Configurator WithGameObjectByPath(this ViewElement.Configurator cfg, FixedString128Bytes value) => 
-			cfg.WithComponent(new GameObjectSource.AssetPath {
-				Value = value
-			});
+		public static ViewElement.Configurator WithGameObjectFromAddressables(
+			this ViewElement.Configurator cfg, FixedString128Bytes path, bool async = true)
+		{
+			if (async)
+				cfg.WithComponent<RequestPrefabAsync>();
+			
+			cfg.WithComponent<RequestPrefabFromAddressables>()
+			   .WithComponent(new PrefabPath { Value = path });
+			return cfg;
+		}
 	}
 
 }

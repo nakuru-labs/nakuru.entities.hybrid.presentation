@@ -2,6 +2,7 @@ using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Nakuru.Entities.Hybrid.Presentation
 {
@@ -17,25 +18,41 @@ namespace Nakuru.Entities.Hybrid.Presentation
 		public float4x4 Value;
 	}
 	
-	public class GameObjectRef : IComponentData
+	public struct RequestPrefabFromResources : IComponentData
+	{ }
+	
+	public struct RequestPrefabFromAddressables : IComponentData
+	{ }
+	
+	public struct RequestNewGameObject : IComponentData
+	{ }
+	
+	public struct PrefabPath : IComponentData
+	{
+		public FixedString128Bytes Value;
+	}
+
+	public struct RequestPrefabAsync : IComponentData
+	{ }
+	
+	public class PrefabFromResourcesLoadingOperation : IComponentData
+	{
+		public ResourceRequest Value;
+	}
+	
+	public class PrefabFromAddressablesLoadingOperation : IComponentData
+	{
+		public AsyncOperationHandle<GameObject> Value;
+	}
+	
+	public class PrefabRef : ICleanupComponentData
 	{
 		public GameObject Value;
 	}
-
-	public struct GameObjectSource
+	
+	public class GameObjectRef : ICleanupComponentData
 	{
-		public struct New : IComponentData
-		{ }
-
-		public struct AssetPath : IComponentData
-		{
-			public FixedString128Bytes Value;
-		}
-		
-		public struct AssetPathAsync : IComponentData
-		{
-			public FixedString128Bytes Value;
-		}
+		public GameObject Value;
 	}
 
 }

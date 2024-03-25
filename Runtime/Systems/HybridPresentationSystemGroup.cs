@@ -14,7 +14,9 @@ namespace Nakuru.Entities.Hybrid.Presentation
 			
 			AddSystemToUpdateList(World.CreateSystem<DetectTransformChangesSystem>());
 			AddSystemToUpdateList(World.CreateSystem<NewGameObjectCreationSystem>());
-			AddSystemToUpdateList(World.CreateSystem<AddressableAssetLoadingSystem>());
+			AddSystemToUpdateList(World.CreateSystem<PrefabFromResourcesLoadingSystem>());
+			AddSystemToUpdateList(World.CreateSystem<PrefabFromAddressablesLoadingSystem>());
+			AddSystemToUpdateList(World.CreateSystem<InstantiatePrefabSystem>());
 			AddSystemToUpdateList(World.CreateSystem<GameObjectParentSystem>());
 			AddSystemToUpdateList(World.CreateSystem<SyncGameObjectTransformSystem>());
 		}
