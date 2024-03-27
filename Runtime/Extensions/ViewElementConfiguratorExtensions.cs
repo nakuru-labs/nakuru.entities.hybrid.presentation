@@ -157,7 +157,7 @@ namespace Nakuru.Entities.Hybrid.Presentation
 			if (async)
 				cfg.WithComponent<RequestPrefabAsync>();
 			
-			cfg.WithComponent<RequestPrefabFromResources>()
+			cfg.WithComponent<PrefabOriginResources>()
 			   .WithComponent(new PrefabPath { Value = path });
 			return cfg;
 		}
@@ -168,7 +168,7 @@ namespace Nakuru.Entities.Hybrid.Presentation
 			if (async)
 				cfg.WithComponent<RequestPrefabAsync>();
 			
-			cfg.WithComponent<RequestPrefabFromAddressables>()
+			cfg.WithComponent<PrefabOriginAddressables>()
 			   .WithComponent(new PrefabPath { Value = path });
 			return cfg;
 		}

@@ -27,7 +27,7 @@ namespace Nakuru.Entities.Hybrid.Presentation
 		private void InitializeLoading(ref SystemState state, EntityCommandBuffer ecb)
 		{
 			foreach (var (prefabPath, entity) in SystemAPI.Query<RefRO<PrefabPath>>()
-			                                              .WithAll<RequestPrefabFromAddressables, RequestPrefabAsync>()
+			                                              .WithAll<PrefabOriginAddressables, RequestPrefabAsync>()
 			                                              .WithNone<PrefabRef, GameObjectRef, PrefabFromAddressablesLoadingOperation>()
 			                                              .WithEntityAccess()) {
 				var path = prefabPath.ValueRO.Value.ToString();
@@ -40,7 +40,7 @@ namespace Nakuru.Entities.Hybrid.Presentation
 		private void CheckLoadingCompletion(ref SystemState state, EntityCommandBuffer ecb)
 		{
 			foreach (var (loadingOperation, entity) in SystemAPI.Query<PrefabFromAddressablesLoadingOperation>()
-			                                                    .WithAll<RequestPrefabFromAddressables>()
+			                                                    .WithAll<PrefabOriginAddressables>()
 			                                                    .WithNone<PrefabRef, GameObjectRef>()
 			                                                    .WithEntityAccess()) {
 				if (!loadingOperation.Value.IsDone)
@@ -49,14 +49,13 @@ namespace Nakuru.Entities.Hybrid.Presentation
 				ecb.AddComponent(entity, new PrefabRef { Value = loadingOperation.Value.Result });
 				ecb.RemoveComponent<PrefabFromAddressablesLoadingOperation>(entity);
 				ecb.RemoveComponent<RequestPrefabAsync>(entity);
-				ecb.RemoveComponent<RequestPrefabFromAddressables>(entity);
 			}
 		}
 
 		private void LoadPrefabSynchronously(ref SystemState state, EntityCommandBuffer ecb)
 		{
 			foreach (var (prefabPath, entity) in SystemAPI.Query<RefRO<PrefabPath>>()
-			                                              .WithAll<RequestPrefabFromAddressables>()
+			                                              .WithAll<PrefabOriginAddressables>()
 			                                              .WithNone<PrefabRef, GameObjectRef, RequestPrefabAsync>()
 			                                              .WithEntityAccess()) {
 				var path = prefabPath.ValueRO.Value.ToString();

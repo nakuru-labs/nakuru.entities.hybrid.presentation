@@ -19,6 +19,9 @@ namespace Nakuru.Entities.Hybrid.Presentation
 			AddSystemToUpdateList(World.CreateSystem<InstantiatePrefabSystem>());
 			AddSystemToUpdateList(World.CreateSystem<GameObjectParentSystem>());
 			AddSystemToUpdateList(World.CreateSystem<SyncGameObjectTransformSystem>());
+			AddSystemToUpdateList(World.CreateSystem<DestroyGameObjectSystem>());
+			AddSystemToUpdateList(World.CreateSystem<ReleasePrefabFromAddressablesSystem>());
+			AddSystemToUpdateList(World.CreateSystem<ReleasePrefabFromResourcesSystem>());
 		}
 	}
 

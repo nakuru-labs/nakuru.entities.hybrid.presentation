@@ -18,10 +18,10 @@ namespace Nakuru.Entities.Hybrid.Presentation
 		public float4x4 Value;
 	}
 	
-	public struct RequestPrefabFromResources : IComponentData
+	public struct PrefabOriginResources : ICleanupComponentData
 	{ }
 	
-	public struct RequestPrefabFromAddressables : IComponentData
+	public struct PrefabOriginAddressables : ICleanupComponentData
 	{ }
 	
 	public struct RequestNewGameObject : IComponentData

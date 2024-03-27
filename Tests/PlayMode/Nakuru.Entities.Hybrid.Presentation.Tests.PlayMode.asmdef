@@ -5,11 +5,11 @@
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
         "Unity.Entities",
-        "Nakuru.Entities.Hybrid.Presentation",
         "Unity.Collections",
         "Unity.Burst",
+        "Unity.Transforms",
         "Nakuru.Entities.Hybrid.Presentation.Tests.Common",
-        "Unity.Transforms"
+        "Nakuru.Entities.Hybrid.Presentation"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

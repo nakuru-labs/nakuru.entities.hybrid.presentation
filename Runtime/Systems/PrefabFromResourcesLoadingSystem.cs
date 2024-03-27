@@ -26,7 +26,7 @@ namespace Nakuru.Entities.Hybrid.Presentation
 		private void InitializeLoading(ref SystemState state, EntityCommandBuffer ecb)
 		{
 			foreach (var (prefabPath, entity) in SystemAPI.Query<RefRO<PrefabPath>>()
-			                                              .WithAll<RequestPrefabFromResources, RequestPrefabAsync>()
+			                                              .WithAll<PrefabOriginResources, RequestPrefabAsync>()
 			                                              .WithNone<PrefabRef, GameObjectRef, PrefabFromResourcesLoadingOperation>()
 			                                              .WithEntityAccess()) {
 				var path = prefabPath.ValueRO.Value.ToString();
@@ -39,7 +39,7 @@ namespace Nakuru.Entities.Hybrid.Presentation
 		private void CheckLoadingCompletion(ref SystemState state, EntityCommandBuffer ecb)
 		{
 			foreach (var (loadingOperation, entity) in SystemAPI.Query<PrefabFromResourcesLoadingOperation>()
-			                                                    .WithAll<RequestPrefabFromResources>()
+			                                                    .WithAll<PrefabOriginResources>()
 			                                                    .WithNone<PrefabRef, GameObjectRef>()
 			                                                    .WithEntityAccess()) {
 				if (!loadingOperation.Value.isDone)
@@ -48,14 +48,13 @@ namespace Nakuru.Entities.Hybrid.Presentation
 				ecb.AddComponent(entity, new PrefabRef { Value = (GameObject)loadingOperation.Value.asset });
 				ecb.RemoveComponent<PrefabFromResourcesLoadingOperation>(entity);
 				ecb.RemoveComponent<RequestPrefabAsync>(entity);
-				ecb.RemoveComponent<RequestPrefabFromResources>(entity);
 			}
 		}
 
 		private void LoadPrefabSynchronously(ref SystemState state, EntityCommandBuffer ecb)
 		{
 			foreach (var (prefabPath, entity) in SystemAPI.Query<RefRO<PrefabPath>>()
-			                                              .WithAll<RequestPrefabFromResources>()
+			                                              .WithAll<PrefabOriginResources>()
 			                                              .WithNone<PrefabRef, GameObjectRef, RequestPrefabAsync>()
 			                                              .WithEntityAccess()) {
 				var path = prefabPath.ValueRO.Value.ToString();
