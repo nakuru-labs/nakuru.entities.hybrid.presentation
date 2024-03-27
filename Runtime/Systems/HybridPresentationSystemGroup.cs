@@ -13,15 +13,19 @@ namespace Nakuru.Entities.Hybrid.Presentation
 			base.OnCreate();
 			
 			AddSystemToUpdateList(World.CreateSystem<DetectTransformChangesSystem>());
+			
 			AddSystemToUpdateList(World.CreateSystem<NewGameObjectCreationSystem>());
 			AddSystemToUpdateList(World.CreateSystem<PrefabFromResourcesLoadingSystem>());
 			AddSystemToUpdateList(World.CreateSystem<PrefabFromAddressablesLoadingSystem>());
 			AddSystemToUpdateList(World.CreateSystem<InstantiatePrefabSystem>());
+			
 			AddSystemToUpdateList(World.CreateSystem<GameObjectParentSystem>());
 			AddSystemToUpdateList(World.CreateSystem<SyncGameObjectTransformSystem>());
+			
 			AddSystemToUpdateList(World.CreateSystem<DestroyGameObjectSystem>());
 			AddSystemToUpdateList(World.CreateSystem<ReleasePrefabFromAddressablesSystem>());
 			AddSystemToUpdateList(World.CreateSystem<ReleasePrefabFromResourcesSystem>());
+			AddSystemToUpdateList(World.CreateSystem<ClearViewElementEventsSystem>());
 		}
 	}
 

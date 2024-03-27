@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.Burst;
 using Unity.Entities;
 using Unity.Transforms;
 using UnityEngine;
@@ -10,12 +9,7 @@ namespace Nakuru.Entities.Hybrid.Presentation
 	[DisableAutoCreation]
 	public partial struct GameObjectParentSystem : ISystem
 	{
-		[BurstCompile]
-		public void OnCreate(ref SystemState state)
-		{
-			state.RequireForUpdate<ViewElement.Event.OnBorn>();
-		}
-
+		// TODO: Optimize to not be run every frame 
 		public void OnUpdate(ref SystemState state)
 		{
 			var parentTransformMap = new Dictionary<Entity, Transform>();
@@ -30,10 +24,14 @@ namespace Nakuru.Entities.Hybrid.Presentation
 				return;
 			
 			foreach (var (goRef, parentRo) in SystemAPI.Query<GameObjectRef, RefRO<Parent>>()
-			                                         .WithAll<ViewElement.Tag, ViewElement.Event.OnBorn>()) {
-				if (parentTransformMap.TryGetValue(parentRo.ValueRO.Value, out var parentTransform)) {
-					goRef.Value.transform.SetParent(parentTransform);
-				}
+			                                         .WithAll<ViewElement.Tag>()) {
+				if (!parentTransformMap.TryGetValue(parentRo.ValueRO.Value, out var parentTransform))
+					continue;
+
+				if (goRef.Value.transform.parent == parentTransform)
+					continue;
+					
+				goRef.Value.transform.SetParent(parentTransform);
 			}
 		}
 	}
