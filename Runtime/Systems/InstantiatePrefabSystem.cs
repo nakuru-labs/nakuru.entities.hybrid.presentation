@@ -2,6 +2,7 @@ using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
 using UnityEngine;
+using View;
 
 namespace Nakuru.Entities.Hybrid.Presentation
 {
@@ -23,6 +24,10 @@ namespace Nakuru.Entities.Hybrid.Presentation
 				var instance = Object.Instantiate(prefabRef.Value);
 				ecb.AddComponent(entity, new GameObjectRef { Value = instance });
 				ecb.AddComponent<ViewElement.Event.OnBorn>(entity);
+
+				// link the entity to GameObject instance
+				var entityRef = instance.AddComponent<EntityRef>();
+				entityRef.Value = entity;
 			}
 
 			ecb.Playback(state.EntityManager);
