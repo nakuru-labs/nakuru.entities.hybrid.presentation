@@ -2,16 +2,18 @@
     "name": "Nakuru.Entities.Hybrid.Presentation.Tests.PlayMode",
     "rootNamespace": "",
     "references": [
-        "UnityEngine.TestRunner",
-        "UnityEditor.TestRunner",
-        "Unity.Entities",
-        "Unity.Collections",
-        "Unity.Burst",
-        "Unity.Transforms",
-        "Nakuru.Entities.Hybrid.Presentation.Tests.Common",
-        "Nakuru.Entities.Hybrid.Presentation"
+        "GUID:27619889b8ba8c24980f49ee34dbb44a",
+        "GUID:0acc523941302664db1f4e527237feb3",
+        "GUID:734d92eba21c94caba915361bd5ac177",
+        "GUID:e0cd26848372d4e5c891c569017e11f1",
+        "GUID:2665a8d13d1b3f18800f46e256720795",
+        "GUID:a5baed0c9693541a5bd947d336ec7659",
+        "GUID:1f110d9e509c54c429f0cb42e40f4879",
+        "GUID:2b4e76f17cc4b4ed5805c6d971ebf11e"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": true,
