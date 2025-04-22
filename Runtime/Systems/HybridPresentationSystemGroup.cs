@@ -12,6 +12,7 @@ namespace Nakuru.Entities.Hybrid.Presentation
 		{
 			base.OnCreate();
 			
+			AddSystemToUpdateList(World.CreateSystem<ClearViewElementEventsSystem>());
 			AddSystemToUpdateList(World.CreateSystem<DetectTransformChangesSystem>());
 			
 			AddSystemToUpdateList(World.CreateSystem<NewGameObjectCreationSystem>());
@@ -25,7 +26,6 @@ namespace Nakuru.Entities.Hybrid.Presentation
 			AddSystemToUpdateList(World.CreateSystem<DestroyGameObjectSystem>());
 			AddSystemToUpdateList(World.CreateSystem<ReleasePrefabFromAddressablesSystem>());
 			AddSystemToUpdateList(World.CreateSystem<ReleasePrefabFromResourcesSystem>());
-			AddSystemToUpdateList(World.CreateSystem<ClearViewElementEventsSystem>());
 		}
 	}
 
